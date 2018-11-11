@@ -1,4 +1,6 @@
 const driver = require('../basic/puppeteer');
+const logger =require('../logger')
+
 class Login{
     
     static async clickLoginBtn(){
@@ -15,6 +17,7 @@ class Login{
     }
 
     static async login(){
+        logger.info('enter login');
         await this.toggleEnv();
         await this.clickLoginBtn();
         await driver.waitFor(page, 5000);

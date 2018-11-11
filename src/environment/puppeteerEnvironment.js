@@ -3,6 +3,7 @@ const NodeEnvironment = require('jest-environment-node')
 const puppeteer = require('puppeteer')
 const fs = require('fs')
 const constants = require('./constants')
+const logger =require('../logger')
 
 class PuppeteerEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -10,11 +11,13 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async setup() {
-    console.log(chalk.yellow('Setup Test Environment.'))
+    // console.log(chalk.yellow('Setup Test Environment.'));
+    logger.info('Setup Test Environment.');
     await super.setup()
     const wsEndpoint = fs.readFileSync(constants.WS_ENDPOINT_PATH, 'utf8')
     if (!wsEndpoint) {
-      throw new Error('wsEndpoint not found')
+      logger.error('wsEndpoint not found');
+      throw new Error('wsEndpoint not found');
     }
     this.global.__BROWSER__ = await puppeteer.connect({
       browserWSEndpoint: wsEndpoint,
@@ -24,7 +27,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    console.log(chalk.yellow('Teardown Test Environment.'))
+    // console.log(chalk.yellow('Teardown Test Environment.'));
+    logger.info('Teardown Test Environment.');
     await super.teardown()
     
   }

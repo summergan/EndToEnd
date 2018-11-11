@@ -3,10 +3,12 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const constants = require('./constants');
+const logger =require('../logger')
 
 
 module.exports = async function() {
-  console.log(chalk.green('Setup Puppeteer'));
+  // console.log(chalk.green('Setup Puppeteer'));
+  logger.info('Setup Puppeteer');
   const browser = await puppeteer.launch({headless:false});
   // This global is not available inside __tests__ but only in global teardown
   global.__BROWSER_GLOBAL__ = browser;

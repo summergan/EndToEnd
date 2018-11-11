@@ -1,7 +1,9 @@
 const driver = require('../basic/puppeteer/index');
 const Login = require('../pages/login');
 const Settings = require('../pages/settings');
+const logger =require('../logger')
 const timeout = 100000
+
 describe(
   '/ (Login Page)',
   () => {
