@@ -11,7 +11,9 @@
     "url": "git+https://github.com/summergan/EndToEnd.git"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "express": "^4.16.4",
+    "jest-vue-report": "^0.1.5"
   },
   "author": "summer gan",
   "license": "ISC",
@@ -19,12 +21,16 @@
     "url": "https://github.com/summergan/EndToEnd/issues"
   },
   "homepage": "https://github.com/summergan/EndToEnd#readme",
+  "jest-vue-report": {
+    "report-site": "test/vueReport"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "jest": "^22.0.1",
+    "jest": "^22.0.0",
     "jest-environment-node": "^22.0.1",
-    "puppeteer": "^1.9.0",
+    "puppeteer": "^1.7.0",
+    "jest-vue-report": "^0.1.5",
     "chalk": "^2.3.0",
     "rimraf": "^2.6.2"
   }
