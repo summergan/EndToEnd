@@ -1,7 +1,6 @@
 const driver = require('../basic/puppeteer/index');
 const Login = require('../pages/login');
 const Settings = require('../pages/settings');
-const logger =require('../logger')
 const timeout = 100000
 
 describe(
@@ -20,6 +19,5 @@ describe(
         await Settings.gotoSettings();
         await Settings.gotoCalling();
         await Settings.settingMyRCPhone();
-        await driver.waitFor(page, 1000);
     },timeout)
   })
