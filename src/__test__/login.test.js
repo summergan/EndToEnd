@@ -5,7 +5,6 @@ describe(
   () => {
     beforeAll(async () => {
       await global.page.goto('http://localhost:8080')
-      const page = global.page;
     }, timeout)
 
     afterAll(async () => {
