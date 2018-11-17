@@ -12,7 +12,7 @@ describe(
     })
 
     it('should load without error', async () => {
-      let text = await global.page.evaluate(() => document.body.innerText)
+      let text = await driver.execute(page,() => document.body.innerText)
       expect(text).toContain('Bing')
     },timeout);
   })
