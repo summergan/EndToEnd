@@ -24,11 +24,11 @@ class Login{
         // swith to activity page
         const activityPage = await driver.switchToActivityPage();
         //input longin name
-        await driver.input(activityPage, '[data-test-automation-id="input"]', "448451030241");
+        await driver.input(activityPage, '[data-test-automation-id="input"]', "44845103024*");
         await driver.click(activityPage, '[data-test-automation-id="loginCredentialNext"]');
         //input password click signin
         await driver.waitFor(activityPage, 3000);
-        await driver.input(activityPage, '[id=password]', 'Test!123');
+        await driver.input(activityPage, '[id=password]', '');
         await driver.click(activityPage, '[data-test-automation-id="signInBtn"]')
     }
 }
