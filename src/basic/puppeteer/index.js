@@ -1,3 +1,5 @@
+const uuid= require('uuid');
+const { getScreenshotUrl } = require('jest-vue-report');
 const DEFAULT_OUTTIME = 300;
 const DEF_DELAY = 1
 async function getElement(_node,selector) {
@@ -22,16 +24,19 @@ async function getElements(_node,selector) {
 
 async function click(_node,selector) {
     let ele = await this.getElement(_node,selector);
+    await this.highLightScreenshots(_node, selector);
     await ele.click();
 };
 
 async function clickMutil(_node,selector,button,clickCount=1,delay=DEF_DELAY) {
     let ele = await this.getElement(_node,selector);
+    await this.highLightScreenshots(_node,selector);
     await ele.click({button:button,clickCount:clickCount,delay:delay});
 };
 
 async function input(_node,selector,text) {
     await this.getElement(_node,selector);
+    await this.highLightScreenshots(_node,selector);
     await _node.type(selector,text,{delay: 2});
 };
 
@@ -71,6 +76,23 @@ async function waitFor(_node,timeOrSelector){
     await _node.waitFor(timeOrSelector);
 }
 
+async function highLightElement(_node, selector){
+  await _node.evaluate("document.querySelector(\"" + selector + "\").style.border=\"1px solid red\"");
+}
+
+async function highLightScreenshots(_node, selector) {
+  const file = `${uuid.v1()}`;
+  const path = getScreenshotUrl(file);
+  await this.highLightElement(_node, selector);
+  await this.screenshot(_node, {path});
+}
+
+
+
+async function screenshot(_node, option){
+  await _node.screenshot(option);
+}
+
 async function getText(_node, selector){
     await this.waitFor(_node, selector);
     const innerText = await _node.$eval(selector, node => node.innerText);
@@ -91,4 +113,7 @@ module.exports= {
     waitFor: waitFor,
     clear: clear,
     getText: getText,
+    highLightElement: highLightElement,
+    highLightScreenshots: highLightScreenshots,
+    screenshot: screenshot,
 };
