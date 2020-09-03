@@ -31,7 +31,7 @@
     "jest": "^22.0.0",
     "jest-environment-node": "^22.0.1",
     "jest-vue-report": "^0.1.5",
-    "puppeteer": "^1.7.0",
+    "puppeteer": "^1.13.0",
     "rimraf": "^2.6.2",
     "winston": "3.0.0"
   }
